@@ -1,12 +1,14 @@
 #include "TypeSort.h"
+#include <iostream>
 namespace algo{
     void TypeSort::insertNum(){
         Type::IntType curr_num("tmp/curr_num.txt");
-        Type::IntType curr_pos_on_input = Type::IntType("tmp/tmp_curr_pos_on_input.txt");
-        Type::IntType curr_pos_on_output = Type::IntType("tmp/tmp_curr_pos_on_output.txt");
+        Type::IntType curr_pos_on_input = Type::IntType("tmp/curr_pos_on_input.txt");
+        Type::IntType curr_pos_on_output = Type::IntType("tmp/curr_pos_on_output.txt");
         Type::IntType next_buffer = Type::IntType("tmp/next_num_buffer.txt");
         if(curr_num.read() > output_type.read()){
             output_type.spinToRight();
+            curr_pos_on_output.write(curr_pos_on_output.read() + 1);
             output_type.write(curr_num.read());
         }
         else{
@@ -14,6 +16,8 @@ namespace algo{
                 output_type.spinToLeft();
                 curr_pos_on_output.write(curr_pos_on_output.read() - 1);
                 if(curr_num.read() > output_type.read()){
+                    output_type.spinToRight();
+                    curr_pos_on_output.write(curr_pos_on_output.read() + 1);
                     break;
                 }
             }
@@ -21,11 +25,10 @@ namespace algo{
                 next_buffer.write(output_type.read());
                 output_type.write(curr_num.read());
                 curr_num.write(next_buffer.read());
-                curr_pos_on_output.write(curr_pos_on_output.read() + 1);
                 output_type.spinToRight();
+                curr_pos_on_output.write(curr_pos_on_output.read() + 1);
             }
-            output_type.spinToLeft();
-            curr_pos_on_output.write(curr_pos_on_output.read() - 1);
+            output_type.write(curr_num.read());
         }
     }
     void TypeSort::sort(){
@@ -35,11 +38,16 @@ namespace algo{
         curr_pos_on_output.write(0);
         output_type.write(input_type.read());
         input_type.spinToRight();
-        while(curr_pos_on_input.read() < size_of_type){
+        curr_pos_on_input.write(curr_pos_on_input.read() + 1);
+        while(curr_pos_on_input.read() < size_of_type - 1){
             Type::IntType curr_num("tmp/curr_num.txt");
             curr_num.write(input_type.read());
+            insertNum();
             input_type.spinToRight();
-            curr_pos_on_input.write(curr_num.read() + 1);
+            curr_pos_on_input.write(curr_pos_on_input.read() + 1);
         }
+        Type::IntType curr_num("tmp/curr_num.txt");
+        curr_num.write(input_type.read());
+        insertNum();
     }
 }

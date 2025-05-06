@@ -10,6 +10,6 @@ namespace Type{
         public:
             int pos;
             std::string path;
-            IntType(const std::string& path): path(path){};
+            IntType(const std::string& path): path(path), pos(0){};
     };
 }

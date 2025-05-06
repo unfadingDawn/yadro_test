@@ -3,8 +3,8 @@
 
 #include "IType.h"
 #include <string>
-namespace Type{
-    class IntType final : public TypeInterface::IType{
+namespace Tape{
+    class IntTape final : public TapeInterface::ITape{
         private:
             std::chrono::milliseconds delay;
             int pos;
@@ -15,7 +15,7 @@ namespace Type{
             int read() override;
             void write(int value) override;
             [[nodiscard]] int getPos() const {return pos;}
-            explicit IntType(const std::string& path, const std::chrono::milliseconds delay) : delay(delay), pos(0), path(path){}
-            ~IntType() override = default;
+            explicit IntTape(const std::string& path, const std::chrono::milliseconds delay) : delay(delay), pos(0), path(path){}
+            ~IntTape() override = default;
     };
 }

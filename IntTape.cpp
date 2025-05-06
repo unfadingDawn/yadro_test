@@ -4,8 +4,8 @@
 #include <thread>
 #include <unistd.h>
 
-namespace Type{
-    void IntType::spinToLeft() {
+namespace Tape{
+    void IntTape::spinToLeft() {
         std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
@@ -16,7 +16,7 @@ namespace Type{
         }
         pos = pos ? pos - 1 : 0;
     }
-    void IntType::spinToRight(){
+    void IntTape::spinToRight(){
         std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
@@ -37,7 +37,7 @@ namespace Type{
             file_write.close();
         }
     }
-    int IntType::read(){
+    int IntTape::read(){
         std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
@@ -53,10 +53,10 @@ namespace Type{
             number += type[temp];
             ++temp;
         }
-        int result = std::stoi(number);
+        int result = std::stoul(number);
         return result;
     }
-    void IntType::write(int value){
+    void IntTape::write(int value){
         std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;

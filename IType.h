@@ -1,9 +1,9 @@
 #pragma once
 
-namespace TypeInterface{
-    class IType{
+namespace TapeInterface{
+    class ITape{
         public:
-        virtual ~IType() = default;
+        virtual ~ITape() = default;
 
         virtual void spinToRight() = 0;
         virtual void spinToLeft() = 0;

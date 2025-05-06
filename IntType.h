@@ -1,7 +1,8 @@
+#pragma once
 #include "IType.h"
 #include <string>
 namespace Type{
-    class IntType : public IType<int>{
+    class IntType final : public TypeInterface::IType{
         private:
             int pos;
             std::string path;
@@ -10,6 +11,7 @@ namespace Type{
             void spinToLeft() override;
             int read() override;
             void write(int value) override;
-            IntType(const std::string& path): path(path), pos(0){};
+            explicit IntType(const std::string& path) : pos(0), path(path){}
+            ~IntType() override = default;
     };
 }

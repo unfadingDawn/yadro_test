@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 namespace Type{
-    void IntType::spinToLeft(){
+    void IntType::spinToLeft() {
         std::ifstream file(path);
         std::string type;
         std::getline(file, type);

@@ -11,7 +11,7 @@ namespace algo{
             std::vector<std::string> paths_temp_types{};
         public:
             TypeSort(const Type::IntType &input_type, const Type::IntType &output_type, int size_of_type): input_type(input_type), output_type(output_type), size_of_type(size_of_type){};
-            void sort();
-            void insertNum();
+            void sort(std::chrono::milliseconds delay);
+            void insertNum(std::chrono::milliseconds delay);
       };
 }

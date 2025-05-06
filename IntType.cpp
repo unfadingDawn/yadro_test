@@ -1,11 +1,12 @@
 #include "IntType.h"
 #include <iostream>
 #include <fstream>
+#include <thread>
 #include <unistd.h>
 
 namespace Type{
     void IntType::spinToLeft() {
-        sleep(delay);
+        std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
         std::getline(file, type);
@@ -16,7 +17,7 @@ namespace Type{
         pos = pos ? pos - 1 : 0;
     }
     void IntType::spinToRight(){
-        sleep(delay);
+        std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
         std::getline(file, type);
@@ -37,7 +38,7 @@ namespace Type{
         }
     }
     int IntType::read(){
-        sleep(delay);
+        std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
         std::getline(file, type);
@@ -56,7 +57,7 @@ namespace Type{
         return result;
     }
     void IntType::write(int value){
-        sleep(delay);
+        std::this_thread::sleep_for(delay);
         std::ifstream file(path);
         std::string type;
         std::string number;
